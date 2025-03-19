@@ -1,0 +1,79 @@
+[project]
+dependencies = [
+
+]
+description = "a python project created from https://github.com/davidslusser/python_project_template"
+dynamic = ["version"]
+keywords = ["python"]
+license = {file = "LICENSE"}
+name = "my_project"
+readme = "README.md"
+requires-python = ">=3.10"
+
+
+[project.optional-dependencies]
+dev = [
+    "bandit",
+    "black",
+    "coveralls",
+    "isort",
+    "mypy",
+    "mypy-extensions",
+    "ruff",
+    "pytest",
+    "pytest-cov",
+    "radon",
+    "safety",
+    "types-python-dateutil",
+    "typing_extensions",
+]
+
+
+[tool.bandit]
+exclude_dirs = ["venv", "tests"]
+
+
+[tool.black]
+line-length = 120
+
+
+[tool.coverage.report]
+show_missing = true
+
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+omit = [
+    "tests/*", 
+    ]
+
+
+[tool.isort]
+profile = "black"
+
+
+[tool.mypy]
+exclude = ["venv/*", "tests/*"]
+ignore_missing_imports = true
+
+
+[tool.pytest.ini_options]
+addopts = "-s -v -x --strict-markers -m 'not extra'"
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
+
+
+[tool.ruff]
+line-length = 120
+exclude = ["venv", "tests"]
+
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src"]
+exclude = []
+namespaces = false
